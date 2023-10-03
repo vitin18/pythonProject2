@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>webChat</title>
+</head>
+<body>
+    <div class="container">
+      <div class="page-header">
+          <h1>{{ titulo }}</h1>
+      </div>
+        <form action="/processar_pergunta" method="post">
+        <fieldset>
+          <div class="form-group">
+            <label for="user">user</label>
+            <input type="text" id="user" name="user" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="perguntas">perguntas</label>
+            <input type="text" id="perguntas" name="perguntas" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary btn-salvar">Enviar Pergunta</button>
+        </fieldset>
+      </form>
+      <div id="historico">
+      </div>
+    </div>
+
+    <script>
+      var historico = [
+        { pergunta: 'Pergunta 1', resposta: 'Resposta 1' },
+        { pergunta: 'Pergunta 2', resposta: 'Resposta 2' },
+      ];
+
+      // Função para adicionar perguntas e respostas ao historico
+      function atualizarHistorico() {
+        var historicoDiv = document.getElementById('historico');
+        historicoDiv.innerHTML = '';
+
+        for (var i = 0; i < historico.length; i++) {
+          var pergunta = historico[i].pergunta;
+          var resposta = historico[i].resposta;
+          var item = document.createElement('div');
+          item.innerHTML = '<strong>Pergunta:</strong> ' + pergunta + '<br><strong>Resposta:</strong> ' + resposta + '<br><br>';
+          historicoDiv.appendChild(item);
+        }
+      }
+      atualizarHistorico();
+    </script>
+</body>
+</html>
